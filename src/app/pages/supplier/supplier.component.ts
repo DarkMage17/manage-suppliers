@@ -33,16 +33,16 @@ export class SupplierComponent {
   private route = inject(ActivatedRoute);
   private decimalPipe = inject(DecimalPipe); // Inyectar DecimalPipe
 
-  public countries: string[] = ['USA', 'Canada', 'Mexico', 'Argentina', 'Russia'];
+  public countries: string[] = ['USA', 'Canada', 'Mexico', 'Argentina', 'Russia', 'China', 'Bangladesh', 'Nigeria'];
 
   public supplierForm: FormGroup = this.formBuild.group({
-    companyName: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 .]+$')]],
-    tradeName: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 .]+$')]],
+    companyName: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ./,]+$')]],
+    tradeName: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 .,]+$')]],
     taxIdentification: ['', [Validators.required, Validators.pattern('^[0-9]{11}$')]],
-    phoneNumber: ['', [Validators.required, Validators.pattern('^\\+?[0-9]{10,15}$')]],
+    phoneNumber: ['', [Validators.required, Validators.pattern('^\\+?[0-9]{9,15}$')]],
     email: ['', [Validators.required, Validators.email]],
     website: ['', [Validators.pattern('https?://.+')]],
-    physicalAddress: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9, ]+$')]],
+    physicalAddress: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9, -(),.]+$')]],
     country: ['', Validators.required],
     annualBilling: [0, [Validators.required, Validators.min(0)]],
   });
