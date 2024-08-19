@@ -1,0 +1,21 @@
+<!-- src/app/api-result-dialog/api-result-dialog.component.html -->
+<h1 mat-dialog-title>Resultados de la API</h1>
+<div mat-dialog-content>
+  <table mat-table [dataSource]="data.results" class="mat-elevation-z8">
+    <!-- Define columns here -->
+    <ng-container matColumnDef="column1">
+      <th mat-header-cell *matHeaderCellDef>Column 1</th>
+      <td mat-cell *matCellDef="let element">{{ element.column1 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="column2">
+      <th mat-header-cell *matHeaderCellDef>Column 2</th>
+      <td mat-cell *matCellDef="let element">{{ element.column2 }}</td>
+    </ng-container>
+
+    <!-- Add more columns as needed -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

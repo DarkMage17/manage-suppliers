@@ -1,0 +1,61 @@
+<mat-card class="supplier-list-card">
+  <mat-card-header>
+    <mat-card-title>
+      <p class="card-title">LISTA DE PROVEEDORES</p>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="actions-container">
+      <button mat-raised-button color="primary" (click)="addSupplier()">Nuevo Proveedor</button>
+    </div>
+
+    <table mat-table [dataSource]="suppliersList" class="supplier-table mat-elevation-z2">
+      <!-- Company Name Column -->
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef>Razón Social</th>
+        <td mat-cell *matCellDef="let element">{{ element.companyName }}</td>
+      </ng-container>
+
+      <!-- Tax ID Column -->
+      <ng-container matColumnDef="taxIdentification">
+        <th mat-header-cell *matHeaderCellDef>Identificación Tributaria</th>
+        <td mat-cell *matCellDef="let element">{{ element.taxIdentification }}</td>
+      </ng-container>
+
+      <!-- Phone Number Column -->
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef>Número Telefónico</th>
+        <td mat-cell *matCellDef="let element">{{ element.phoneNumber }}</td>
+      </ng-container>
+
+      <!-- Last Edit Column -->
+      <ng-container matColumnDef="lastEdit">
+        <th mat-header-cell *matHeaderCellDef>Última Edición</th>
+        <td mat-cell *matCellDef="let element"> 
+          {{ element.lastEdit | date:'yyyy-MM-dd HH:mm:ss' }} 
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="editSupplier(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteSupplier(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="viewDetails(element)">
+            <mat-icon>info</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Header and Row Declarations -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

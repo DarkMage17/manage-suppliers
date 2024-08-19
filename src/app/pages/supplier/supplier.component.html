@@ -1,0 +1,137 @@
+<div class="supplier-form-container mat-elevation-z8">
+  <form [formGroup]="supplierForm" (ngSubmit)="saveSupplier()">
+    <h2 class="form-title">Registro de Proveedores</h2>
+
+    <mat-grid-list cols="2" rowHeight="100px" gutterSize="16px">
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Razón Social</mat-label>
+          <input matInput formControlName="companyName" placeholder="Ingrese la razón social">
+          <mat-error *ngIf="supplierForm.get('companyName')?.hasError('required')">
+            La razón social es requerida
+          </mat-error>
+          <mat-error *ngIf="supplierForm.get('companyName')?.hasError('pattern')">
+            La razón social debe ser alfanumérica
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Nombre Comercial</mat-label>
+          <input matInput formControlName="tradeName" placeholder="Ingrese el nombre comercial">
+          <mat-error *ngIf="supplierForm.get('tradeName')?.hasError('required')">
+            El nombre comercial es requerido
+          </mat-error>
+          <mat-error *ngIf="supplierForm.get('tradeName')?.hasError('pattern')">
+            El nombre comercial debe ser alfanumérico
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Identificación Tributaria</mat-label>
+          <input matInput formControlName="taxIdentification" placeholder="Ingrese la identificación" maxlength="11">
+          <mat-error *ngIf="supplierForm.get('taxIdentification')?.hasError('required')">
+            La identificación tributaria es requerida
+          </mat-error>
+          <mat-error *ngIf="supplierForm.get('taxIdentification')?.hasError('pattern')">
+            Debe tener 11 dígitos numéricos
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Número Telefónico</mat-label>
+          <input matInput formControlName="phoneNumber" placeholder="Ingrese el número de teléfono">
+          <mat-error *ngIf="supplierForm.get('phoneNumber')?.hasError('required')">
+            El número de teléfono es requerido
+          </mat-error>
+          <mat-error *ngIf="supplierForm.get('phoneNumber')?.hasError('pattern')">
+            Número de teléfono inválido
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Correo Electrónico</mat-label>
+          <input matInput formControlName="email" placeholder="Ingrese el correo electrónico">
+          <mat-error *ngIf="supplierForm.get('email')?.hasError('required')">
+            El correo electrónico es requerido
+          </mat-error>
+          <mat-error *ngIf="supplierForm.get('email')?.hasError('email')">
+            Correo electrónico inválido
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Sitio Web</mat-label>
+          <input matInput formControlName="website" placeholder="Ingrese el sitio web">
+          <mat-error *ngIf="supplierForm.get('website')?.hasError('required')">
+            El sitio web es requerido
+          </mat-error>
+          <mat-error *ngIf="supplierForm.get('website')?.hasError('pattern')">
+            El sitio web debe ser una URL válida
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Dirección Física</mat-label>
+          <input matInput formControlName="physicalAddress" placeholder="Ingrese la dirección">
+          <mat-error *ngIf="supplierForm.get('physicalAddress')?.hasError('required')">
+            La dirección física es requerida
+          </mat-error>
+          <mat-error *ngIf="supplierForm.get('physicalAddress')?.hasError('pattern')">
+            La dirección física debe ser alfanumérica
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>País</mat-label>
+          <mat-select formControlName="country">
+            <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="supplierForm.get('country')?.hasError('required')">
+            Debe seleccionar un país
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Facturación Anual</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="annualBilling"
+            placeholder="Ingrese la facturación anual"
+            (blur)="onBlur($event)"
+          />
+          <mat-error *ngIf="supplierForm.get('annualBilling')?.hasError('required')">
+            La facturación anual es requerida
+          </mat-error>
+          <mat-error *ngIf="supplierForm.get('annualBilling')?.hasError('min')">
+            La facturación anual debe ser un número positivo
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      
+      
+
+    </mat-grid-list>
+
+    <div class="buttons-container">
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+      <button mat-raised-button color="warn" (click)="goBack()">Volver</button>
+    </div>
+  </form>
+</div>
